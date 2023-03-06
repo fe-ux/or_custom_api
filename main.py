@@ -5,16 +5,18 @@ from object_detection.utils import label_map_util
 from object_detection.utils import visualization_utils as vis_util
 import cv2
 
+webcam_connection=#edit
+
 utils_ops.tf = tf.compat.v1
 
 gpus = tf.config.experimental.list_physical_devices('GPU')
 for gpu in gpus:
     tf.config.experimental.set_memory_growth(gpu, True)
 
-path_to_labels = '/home/arseniy/PycharmProjects/or_custom_api/data/train/masks_label_map.pbtxt'
+path_to_labels = 'data/train/masks_label_map.pbtxt'
 category_index = label_map_util.create_category_index_from_labelmap(path_to_labels, use_display_name=True)
 
-path_to_model = "/home/arseniy/PycharmProjects/or_custom_api/my_models/saved_model/saved_model/"
+path_to_model = "my_models/saved_model/saved_model/"
 
 detection_model = tf.saved_model.load(path_to_model).signatures['serving_default']
 
@@ -62,7 +64,7 @@ def show_inference(image_np, api_output_dict):
     return image_np
 
 
-cap = cv2.VideoCapture('rtsp://192.168.0.5:8080/h264_ulaw.sdp')
+cap = cv2.VideoCapture(webcam_connection)
 t = 0
 while True:
     ret, frame = cap.read()
