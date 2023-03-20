@@ -14,7 +14,7 @@ for gpu in gpus:
     tf.config.experimental.set_memory_growth(gpu, True)
 
 path_to_labels = 'data/train/masks_label_map.pbtxt'
-category_index = label_map_util.create_category_index_from_labelmap(path_to_labels, use_display_name=True)
+category_index = label_map_util.create_category_index_from_labelmap(path_to_labels)
 
 path_to_model = "my_models/saved_model/saved_model/"
 
